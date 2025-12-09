@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions - C Shop Official</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-blue: #0D47A1;
+    --accent-blue: #2979FF;
+    --primary-orange: #FF6D00;
+    --gradient-header: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #002171 100%);
+    --gradient-orange: linear-gradient(135deg, #FF6D00, #FFAB40);
+    --bg-color: #F5F7FA;
+    --card-bg: #FFFFFF;
+    --text-main: #37474F;
+    --text-light: #78909C;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
+    --shadow-hover: 0 15px 40px rgba(13, 71, 161, 0.15);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Sarabun', sans-serif;
+    background-color: var(--bg-color);
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(41, 121, 255, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(255, 109, 0, 0.05) 0%, transparent 20%);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--text-main);
+  }
+
+  /* --- Main Container --- */
+  .container {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 900px;
+    margin: 40px 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+
+  /* --- Header Area --- */
+  .header {
+    height: 220px;
+    background: var(--gradient-header);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Abstract Shapes in Header */
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: floatShape 8s infinite alternate;
+  }
+  .shape-1 { width: 150px; height: 150px; background: var(--primary-orange); top: -20px; right: -20px; }
+  .shape-2 { width: 200px; height: 200px; background: var(--accent-blue); bottom: -50px; left: -50px; animation-delay: 2s; }
+  
+  .header-content {
+    z-index: 2;
+    color: white;
+  }
+
+  .brand-logo {
+    font-family: 'Prompt', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    margin-bottom: 5px;
+  }
+  .brand-logo span { color: #FFAB40; }
+
+  .doc-title {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-top: 5px;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 15px;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+  }
+
+  /* Wave Divider */
+  .wave-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .wave-divider svg {
+    position: relative;
+    display: block;
+    width: calc(138% + 1.3px);
+    height: 50px;
+  }
+  .wave-divider .shape-fill { fill: #FFFFFF; }
+
+  /* --- Content Body --- */
+  .content-body {
+    padding: 50px;
+  }
+
+  .intro-text {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 40px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* --- Section Cards --- */
+  .section-card {
+    margin-bottom: 30px;
+    border-left: 4px solid transparent;
+    padding: 20px 25px;
+    border-radius: 0 12px 12px 0;
+    transition: all 0.3s ease;
+    background: white;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.6s ease forwards;
+  }
+
+  .section-card:hover {
+    background: #F9FAFB;
+    border-left-color: var(--accent-blue);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transform: translateX(5px);
+  }
+
+  /* Special Styles per Type */
+  .card-warning { border-left-color: #FFAB40; } 
+  .card-danger { border-left-color: #FF5252; background: #FFEBEE; }
+  .card-highlight { 
+    background: linear-gradient(to right, #E3F2FD, #FFFFFF); 
+    border: 1px solid #BBDEFB;
+    border-left: 4px solid var(--accent-blue);
+  }
+
+  /* Headers in Section */
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .icon-box {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: var(--primary-blue);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .section-title {
+    font-family: 'Prompt', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-blue);
+  }
+
+  .section-detail {
+    font-size: 15px;
+    color: #546E7A;
+    line-height: 1.7;
+    padding-left: 55px; /* Indent to align with title */
+  }
+
+  .section-detail ul { margin: 0; padding-left: 20px; }
+  .section-detail li { margin-bottom: 8px; }
+
+  /* Refund Special Box */
+  .refund-badge {
+    display: inline-block;
+    background: var(--primary-orange);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(255, 109, 0, 0.3);
+  }
+
+  /* --- Footer --- */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    background: #ECEFF1;
+    border-top: 1px solid #CFD8DC;
+    font-size: 14px;
+    color: var(--text-light);
+  }
+
+  .accept-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--primary-blue);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Prompt', sans-serif;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .accept-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 71, 161, 0.4);
+  }
+
+  /* --- Animations --- */
+  @keyframes floatShape {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(20px, 20px) rotate(10deg); }
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Stagger Delay Logic */
+  .section-card:nth-child(1) { animation-delay: 0.2s; }
+  .section-card:nth-child(2) { animation-delay: 0.3s; }
+  .section-card:nth-child(3) { animation-delay: 0.4s; }
+  .section-card:nth-child(4) { animation-delay: 0.5s; }
+  .section-card:nth-child(5) { animation-delay: 0.6s; }
+  .section-card:nth-child(6) { animation-delay: 0.7s; }
+  .section-card:nth-child(7) { animation-delay: 0.8s; }
+  .section-card:nth-child(8) { animation-delay: 0.9s; }
+  .section-card:nth-child(9) { animation-delay: 1.0s; }
+
+  /* Mobile Responsive */
+  @media (max-width: 600px) {
+    .brand-logo { font-size: 40px; }
+    .content-body { padding: 25px; }
+    .section-detail { padding-left: 0; margin-top: 10px; }
+    .section-header { margin-bottom: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Header -->
+  <div class="header">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    
+    <div class="header-content">
+      <div class="brand-logo">C <span>Shop</span></div>
+      <div class="doc-title">Connect & Center</div>
+    </div>
+
+    <div class="wave-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-body">
+    
+    <p class="intro-text">
+      ยินดีต้อนรับสู่ <strong>C Shop</strong> เพื่อความเข้าใจที่ตรงกันและประสบการณ์การใช้บริการที่ดีที่สุด <br>
+      กรุณาอ่านข้อกำหนดและเงื่อนไขการให้บริการฉบับนี้อย่างละเอียด
+    </p>
+
+    <!-- 01 เงื่อนไขการเข้ารับบริการ -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">🏷️</div>
+        <div class="section-title">01. เงื่อนไขการเข้ารับบริการ (Service Terms)</div>
+      </div>
+      <div class="section-detail">
+        <ul>
+            <li>ลูกค้าต้องทำการนัดหมายล่วงหน้าผ่านช่องทางที่กำหนดเท่านั้น</li>
+            <li>กรุณาเดินทางมาถึงก่อนเวลานัดหมายอย่างน้อย <strong>10 นาที</strong> เพื่อเตรียมความพร้อม</li>
+            <li>หากเรียกคิวแล้วไม่อยู่รับบริการเกิน 3 ครั้ง ทางร้านขอสงวนสิทธิ์ในการยกเลิกคิวดังกล่าวทันที</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 02 ประกาศสำคัญ -->
+    <div class="section-card card-warning">
+      <div class="section-header">
+        <div class="icon-box" style="color: #FF6D00;">📢</div>
+        <div class="section-title" style="color: #FF6D00;">02. ประกาศและข้อควรทราบ (Notice)</div>
+      </div>
+      <div class="section-detail">
+        ทางร้านขอสงวนสิทธิ์ในการเปลี่ยนแปลงโปรโมชั่น ราคา หรือเงื่อนไขการให้บริการโดยไม่ต้องแจ้งให้ทราบล่วงหน้า 
+        การตัดสินใจของทางร้านถือเป็นที่สิ้นสุดในทุกกรณี เพื่อความเป็นระเบียบเรียบร้อย
+      </div>
+    </div>
+
+    <!-- 03 นโยบายความเป็นส่วนตัว -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">🛡️</div>
+        <div class="section-title">03. การเก็บรวบรวมข้อมูล (Privacy & Profile)</div>
+      </div>
+      <div class="section-detail">
+        เราให้ความสำคัญกับข้อมูลส่วนบุคคลของท่าน ข้อมูลที่ท่านให้ไว้ (เช่น ชื่อ, เบอร์โทร, ประวัติการสั่งซื้อ) 
+        จะถูกใช้เพื่อ:
+        <ul>
+            <li>ยืนยันตัวตนในการเข้าใช้บริการ</li>
+            <li>พัฒนาและปรับปรุงคุณภาพการให้บริการ</li>
+            <li>แจ้งเตือนสถานะสินค้าและการนัดหมาย</li>
+        </ul>
+        <em>*เราจะไม่เปิดเผยข้อมูลของท่านแก่บุคคลภายนอก เว้นแต่ได้รับความยินยอมหรือตามคำสั่งทางกฎหมาย</em>
+      </div>
+    </div>
+
+    <!-- 04 เงื่อนไขการสั่งซื้อ -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">🛒</div>
+        <div class="section-title">04. เงื่อนไขการสั่งซื้อ (Order Policy)</div>
+      </div>
+      <div class="section-detail">
+        การกดสั่งซื้อสินค้าถือว่าท่านได้ยอมรับรายละเอียดของสินค้าแล้ว สำหรับสินค้าประเภท Digital Product (ไฟล์/รหัส) 
+        เมื่อระบบจัดส่งแล้วจะไม่สามารถเปลี่ยน หรือยกเลิกได้ทุกกรณี โปรดตรวจสอบความถูกต้องก่อนชำระเงิน
+      </div>
+    </div>
+
+    <!-- 05 เงื่อนไขการชำระเงิน -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">💸</div>
+        <div class="section-title">05. การชำระเงิน (Payment)</div>
+      </div>
+      <div class="section-detail">
+        <ul>
+            <li>รองรับการโอนผ่านธนาคาร (PromptPay) และ TrueMoney Wallet</li>
+            <li>กรุณาโอนยอดเงินให้ <strong>ตรงตามจุดทศนิยม</strong> ที่ระบบแจ้ง เพื่อความรวดเร็วในการตรวจสอบยอดอัตโนมัติ</li>
+            <li>หากโอนผิดยอด หรือไม่แนบสลิป อาจทำให้การยืนยันออเดอร์ล่าช้า</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 06 เงื่อนไขการคืนเงิน (Highlight) -->
+    <div class="section-card card-highlight">
+      <div class="section-header">
+        <div class="icon-box">↩️</div>
+        <div class="section-title">06. เงื่อนไขการขอคืนเงิน (Refund Policy)</div>
+      </div>
+      <div class="section-detail">
+        <div class="refund-badge">เงื่อนไขพิเศษ</div>
+        <div>
+            หากสินค้าหรือบริการมีปัญหาตามเงื่อนไขที่กำหนด ทางร้านยินดีพิจารณาคืนเงิน โดยมีรายละเอียดดังนี้:
+        </div>
+        <ul style="margin-top: 10px; font-weight: 600; color: #0D47A1;">
+            <li>การคืนเงินจะคืนให้ 20% ของยอดที่ชำระเข้ามา</li>
+            <li>รอบการดำเนินการคืนเงิน: ทุกวันที่ 10 และวันที่ 15 ของเดือน</li>
+        </ul>
+        <span style="font-size: 13px; color: #78909C; display:block; margin-top:5px;">(กรุณายื่นเรื่องและหลักฐานก่อนวันตัดรอบดำเนินการอย่างน้อย 3 วันทำการ)</span>
+      </div>
+    </div>
+
+    <!-- 07 การจัดส่งสินค้า -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">🚚</div>
+        <div class="section-title">07. การจัดส่งสินค้า (Shipping)</div>
+      </div>
+      <div class="section-detail">
+        <ul>
+            <li><strong>สินค้าทั่วไป:</strong> ตัดรอบส่งเวลา 14.00 น. จัดส่งภายใน 1-2 วันทำการ</li>
+            <li><strong>สินค้าพรีออเดอร์:</strong> ระยะเวลาจัดส่งขึ้นอยู่กับรอบการนำเข้า (7-14 วัน)</li>
+            <li>ทางร้านไม่รับผิดชอบกรณีพัสดุล่าช้าจากทางขนส่ง แต่ยินดีช่วยติดตามพัสดุให้</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 08 การเปลี่ยนแปลงข้อมูล -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="icon-box">✏️</div>
+        <div class="section-title">08. การเปลี่ยนแปลงข้อมูล (Data Modification)</div>
+      </div>
+      <div class="section-detail">
+        หากต้องการเปลี่ยนที่อยู่จัดส่ง หรือข้อมูลส่วนตัวหลังจากยืนยันคำสั่งซื้อ กรุณาติดต่อแอดมินภายใน 1 ชั่วโมงหลังจากสั่งซื้อ 
+        หากเกินเวลาดังกล่าวหรือสินค้าถูกจัดส่งแล้ว จะไม่สามารถเปลี่ยนแปลงข้อมูลได้
+      </div>
+    </div>
+
+    <!-- 09 กฎหมาย -->
+    <div class="section-card card-danger">
+      <div class="section-header">
+        <div class="icon-box" style="color: #D32F2F;">⚖️</div>
+        <div class="section-title" style="color: #D32F2F;">09. การดำเนินการตามกฎหมาย (Legal Actions)</div>
+      </div>
+      <div class="section-detail">
+        ทางร้าน C Shop จะดำเนินคดีตามกฎหมายอย่างถึงที่สุด หากพบพฤติกรรมดังต่อไปนี้:
+        <ul>
+            <li>การปลอมแปลงสลิปโอนเงิน (Slip Fraud)</li>
+            <li>การเจตนาฉ้อโกง หรือสร้างความเสียหายต่อชื่อเสียงของร้าน</li>
+            <li>การละเมิดลิขสิทธิ์ นำสินค้า Digital ไปจำหน่ายต่อโดยไม่ได้รับอนุญาต</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <a href="https://lin.ee/Rs7oejI" class="accept-btn">กลับสู่ไลน์บริการ</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2025 C Shop Service System. All Rights Reserved.</p>
+    <p style="font-size: 12px; margin-top: 5px;">หากมีข้อสงสัยเพิ่มเติม โปรดติดต่อ Admin ผ่านช่องทางหลัก</p>
+  </div>
+
+</div>
+
+</body>
+</html>
